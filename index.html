@@ -759,17 +759,19 @@
     background: rgba(255,253,248,0.04);
     border: 1px solid rgba(255,255,255,0.08);
     border-radius: 14px;
-    padding: 14px;
+    padding: 12px;
     display: flex;
     align-items: center;
-    gap: 14px;
+    gap: 10px;
     transition: border-color 0.2s ease, transform 0.2s ease;
+    min-width: 0;
+    overflow: hidden;
   }
   .crew-card-photo:hover { border-color: rgba(245,166,35,0.3); transform: scale(1.02); }
   .crew-card-photo:active { transform: scale(0.98); }
   .crew-photo {
-    width: 72px;
-    height: 72px;
+    width: 56px;
+    height: 56px;
     border-radius: 50%;
     object-fit: cover;
     object-position: center top;
@@ -777,37 +779,54 @@
     border: 2.5px solid rgba(245,166,35,0.5);
     box-shadow: 0 0 0 4px rgba(245,166,35,0.12), 0 4px 12px rgba(0,0,0,0.3);
   }
+  .crew-card-photo > div {
+    min-width: 0;
+    overflow: hidden;
+    flex: 1;
+  }
   .crew-name {
     font-weight: 700;
-    font-size: 15px;
+    font-size: 14px;
     color: var(--white);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .crew-surname {
     font-size: 11px;
     color: rgba(245,166,35,0.7);
-    letter-spacing: 1px;
-    margin-top: 3px;
+    letter-spacing: 0.5px;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
   .crew-boarding-link {
     margin-top: 5px;
     display: inline-flex;
     align-items: center;
-    gap: 5px;
+    gap: 4px;
     font-size: 10px;
     color: rgba(255,253,248,0.25);
     letter-spacing: 0.5px;
     text-decoration: none;
     border: 1px solid rgba(255,255,255,0.1);
-    padding: 3px 8px;
+    padding: 3px 7px;
     border-radius: 100px;
     background: rgba(255,255,255,0.04);
     cursor: default;
     pointer-events: none;
+    white-space: nowrap;
   }
   .crew-boarding-link:hover {
     background: rgba(255,255,255,0.04);
     border-color: rgba(255,255,255,0.1);
     color: rgba(255,253,248,0.25);
+  }
+  @media (max-width: 380px) {
+    .crew-photo { width: 46px; height: 46px; }
+    .crew-name { font-size: 13px; }
+    .crew-boarding-link { font-size: 9px; padding: 2px 6px; }
   }
 
   /* ===== PROGRAMME CONCIS ===== */
@@ -1249,7 +1268,7 @@
   <div class="section-label">Le squad</div>
   <div class="section-title">LES 12</div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
 
     <div class="crew-card-photo">
       <img src="Benoit.png" class="crew-photo" alt="Benoit">
@@ -1915,7 +1934,7 @@
   <!-- Solo -->
   <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(75,163,216,0.8);margin-bottom:12px">Chambres solo</div>
 
-  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+  <div style="display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px">
 
     <div class="chambre-card chambre-solo">
       <div class="chambre-num-solo">05</div>
