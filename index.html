@@ -1,0 +1,2041 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>🌞 MÁLAGA 2025 — Les Boys</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sun: #F5A623;
+    --fire: #E8441A;
+    --deep: #1A0A00;
+    --sand: #F2E6D0;
+    --sea: #1B6CA8;
+    --sea-light: #4BA3D8;
+    --white: #FFFDF8;
+    --card-bg: rgba(255,253,248,0.06);
+    --radius: 16px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--deep);
+    color: var(--white);
+    overflow-x: hidden;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    padding: 40px 24px 120px;
+    background: linear-gradient(180deg,
+      #0A2A6E 0%,
+      #1448B8 15%,
+      #2D7DD2 35%,
+      #5BA8E8 55%,
+      #A8D8F8 72%,
+      #FFE8A0 85%,
+      #FFCA45 92%,
+      #FF9500 100%
+    );
+  }
+
+  /* Particules lumineuses */
+  .hero-particles {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
+  }
+  .particle {
+    position: absolute;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.7);
+    animation: float-particle linear infinite;
+  }
+  @keyframes float-particle {
+    0% { transform: translateY(100vh) scale(0); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 0.8; }
+    100% { transform: translateY(-10vh) scale(1); opacity: 0; }
+  }
+
+  /* ===== LOGO-SOLEIL ===== */
+  .logo-sun-wrapper {
+    position: absolute;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 3;
+    width: clamp(220px, 55vw, 320px);
+    height: clamp(220px, 55vw, 320px);
+  }
+
+  /* Halo glow derrière le logo */
+  .logo-halo {
+    position: absolute;
+    inset: -40px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(255,210,50,0.9) 0%, rgba(255,160,0,0.7) 30%, rgba(255,100,0,0.3) 60%, transparent 80%);
+    animation: halo-pulse 3s ease-in-out infinite;
+    filter: blur(8px);
+  }
+  @keyframes halo-pulse {
+    0%,100% { transform: scale(1); opacity: 0.8; }
+    50% { transform: scale(1.08); opacity: 1; }
+  }
+
+  /* Rayons solaires SVG */
+  .logo-rays {
+    position: absolute;
+    inset: -60px;
+    animation: rays-rotate 20s linear infinite;
+  }
+  @keyframes rays-rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+
+  /* Logo image */
+  .logo-img {
+    position: relative;
+    z-index: 5;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+    filter: drop-shadow(0 0 20px rgba(255,200,50,0.8)) drop-shadow(0 0 40px rgba(255,150,0,0.5));
+    animation: logo-float 4s ease-in-out infinite;
+  }
+  @keyframes logo-float {
+    0%,100% { transform: translateY(0) scale(1); }
+    50% { transform: translateY(-8px) scale(1.02); }
+  }
+
+  /* Mer scintillante */
+  .hero-sea {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 130px;
+    z-index: 4;
+    overflow: hidden;
+  }
+  .sea-wave {
+    position: absolute;
+    bottom: 0;
+    width: 200%;
+    border-radius: 50% 50% 0 0;
+  }
+  .sea-wave-1 {
+    height: 90px;
+    background: linear-gradient(180deg, rgba(29,100,180,0) 0%, rgba(29,100,180,0.6) 40%, rgba(10,60,140,0.95) 100%);
+    animation: sea-anim1 7s ease-in-out infinite;
+  }
+  .sea-wave-2 {
+    height: 70px;
+    background: linear-gradient(180deg, rgba(255,255,255,0) 0%, rgba(100,180,240,0.4) 40%, rgba(20,80,160,0.8) 100%);
+    animation: sea-anim2 5s ease-in-out infinite;
+    opacity: 0.7;
+  }
+  .sea-sparkle {
+    position: absolute;
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: white;
+    animation: sparkle 2s ease-in-out infinite;
+  }
+  @keyframes sea-anim1 {
+    0%,100% { transform: translateX(-25%) scaleY(1); }
+    50% { transform: translateX(-5%) scaleY(1.15); }
+  }
+  @keyframes sea-anim2 {
+    0%,100% { transform: translateX(-10%) scaleY(1); }
+    50% { transform: translateX(-30%) scaleY(0.9); }
+  }
+  @keyframes sparkle {
+    0%,100% { opacity: 0; transform: scale(0); }
+    50% { opacity: 1; transform: scale(1); }
+  }
+
+  /* Contenu hero */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding-bottom: 20px;
+  }
+
+  .hero-club-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(10, 40, 110, 0.75);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255,210,60,0.5);
+    color: #FFD700;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    padding: 7px 18px;
+    border-radius: 100px;
+    margin-bottom: 16px;
+    animation: fadeInDown 0.6s ease both;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+  }
+  .hero-club-badge::before {
+    content: '⚓';
+    font-size: 13px;
+  }
+
+  .hero-iro-line {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(13px, 3.5vw, 17px);
+    color: rgba(10,40,110,0.9);
+    font-weight: 700;
+    letter-spacing: 1px;
+    margin-bottom: 6px;
+    animation: fadeInDown 0.65s ease 0.05s both;
+    text-shadow: 0 1px 4px rgba(255,255,255,0.6);
+  }
+
+  .hero-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(88px, 28vw, 172px);
+    line-height: 0.85;
+    letter-spacing: 8px;
+    background: linear-gradient(180deg,
+      #FFFFFF 0%,
+      #FFF0A0 20%,
+      #FFD700 45%,
+      #FFA500 70%,
+      #FF6B00 100%
+    );
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: fadeInDown 0.7s ease 0.1s both;
+    filter:
+      drop-shadow(0 0 30px rgba(255,210,50,0.9))
+      drop-shadow(0 0 60px rgba(255,160,0,0.6))
+      drop-shadow(0 4px 0 rgba(180,80,0,0.4));
+    position: relative;
+  }
+
+  .hero-title-accent {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: clamp(14px, 4vw, 20px);
+    color: #1448B8;
+    margin-top: 4px;
+    opacity: 0.85;
+    animation: fadeInDown 0.7s ease 0.2s both;
+    text-shadow: 0 1px 8px rgba(255,255,255,0.8);
+    font-weight: 700;
+  }
+
+  .hero-dates {
+    margin-top: 22px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.7s ease 0.4s both;
+  }
+
+  .hero-date-pill {
+    background: rgba(10,40,110,0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255,210,60,0.4);
+    padding: 9px 18px;
+    border-radius: 100px;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.95);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+  }
+  .hero-date-pill span { color: #FFD700; font-weight: 700; }
+
+  .hero-scroll {
+    position: absolute;
+    bottom: 140px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    opacity: 0.5;
+    animation: bounce 2s ease infinite;
+  }
+  .hero-scroll span {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #0A2A6E;
+    font-weight: 700;
+  }
+
+  @keyframes bounce { 0%,100% { transform: translateX(-50%) translateY(0); } 50% { transform: translateX(-50%) translateY(6px); } }
+  @keyframes fadeInDown { from { opacity:0; transform: translateY(-20px); } to { opacity:1; transform: translateY(0); } }
+  @keyframes fadeInUp { from { opacity:0; transform: translateY(20px); } to { opacity:1; transform: translateY(0); } }
+
+  /* ===== CREW BANNER ===== */
+  .crew-banner {
+    background: linear-gradient(90deg, #0A2A6E, #1448B8, #0A2A6E);
+    padding: 16px 24px;
+    text-align: center;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(16px, 4.5vw, 24px);
+    letter-spacing: 3px;
+    color: #FFD700;
+    border-top: 2px solid rgba(255,210,60,0.3);
+    border-bottom: 2px solid rgba(255,210,60,0.3);
+  }
+
+  /* ===== SECTION ===== */
+  .section {
+    padding: 60px 20px;
+    max-width: 540px;
+    margin: 0 auto;
+  }
+
+  .section-label {
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--sun);
+    margin-bottom: 8px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(36px, 10vw, 56px);
+    line-height: 1;
+    letter-spacing: 2px;
+    color: var(--white);
+    margin-bottom: 32px;
+  }
+
+  /* ===== CARDS ===== */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 16px;
+    backdrop-filter: blur(8px);
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .card:active { transform: scale(0.98); }
+  .card:hover { border-color: rgba(245,166,35,0.3); }
+
+  .card-icon {
+    font-size: 32px;
+    margin-bottom: 10px;
+    display: block;
+  }
+  .card-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--sun);
+    margin-bottom: 6px;
+  }
+  .card-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: rgba(255,253,248,0.75);
+  }
+  .card-text strong { color: var(--white); }
+
+  .card-highlight {
+    background: linear-gradient(135deg, rgba(232,68,26,0.2), rgba(245,166,35,0.1));
+    border-color: rgba(245,166,35,0.25);
+  }
+
+  /* ===== FLIGHT CARD ===== */
+  .flight-card {
+    background: linear-gradient(135deg, rgba(27,108,168,0.3), rgba(10,26,42,0.8));
+    border: 1px solid rgba(75,163,216,0.3);
+    border-radius: var(--radius);
+    padding: 24px;
+    margin-bottom: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+  .flight-card::before {
+    content: '✈';
+    position: absolute;
+    right: -10px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 80px;
+    opacity: 0.06;
+  }
+  .flight-route {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .flight-city {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    letter-spacing: 2px;
+    color: var(--white);
+  }
+  .flight-arrow {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+  .flight-line {
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(90deg, rgba(255,255,255,0.2), var(--sea-light));
+  }
+  .flight-plane { font-size: 20px; }
+  .flight-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 12px;
+  }
+  .flight-detail-item { }
+  .flight-detail-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sea-light);
+    margin-bottom: 3px;
+  }
+  .flight-detail-value {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .flight-detail-value.placeholder {
+    color: rgba(255,255,255,0.35);
+    font-style: italic;
+    font-size: 13px;
+    font-weight: 400;
+  }
+
+  /* ===== TIMELINE ===== */
+  .timeline { position: relative; padding-left: 28px; }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    bottom: 8px;
+    width: 2px;
+    background: linear-gradient(180deg, var(--fire), var(--sun), var(--sea));
+  }
+  .timeline-item {
+    position: relative;
+    padding-bottom: 28px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -24px;
+    top: 6px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--sun);
+    border: 2px solid var(--deep);
+    box-shadow: 0 0 0 3px rgba(245,166,35,0.3);
+  }
+  .timeline-day {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 14px;
+    letter-spacing: 3px;
+    color: var(--sun);
+    margin-bottom: 6px;
+    text-transform: uppercase;
+  }
+  .timeline-title {
+    font-size: 17px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 4px;
+  }
+  .timeline-desc {
+    font-size: 13px;
+    color: rgba(255,253,248,0.65);
+    line-height: 1.6;
+  }
+  .timeline-joke {
+    font-size: 12px;
+    color: var(--sun);
+    font-style: italic;
+    margin-top: 4px;
+    opacity: 0.8;
+  }
+
+  /* ===== PACKING LIST ===== */
+  .pack-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+  .pack-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.07);
+    border-radius: 10px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+  }
+  .pack-item.checked {
+    background: rgba(245,166,35,0.12);
+    border-color: rgba(245,166,35,0.4);
+  }
+  .pack-item.checked .pack-check { background: var(--sun); border-color: var(--sun); color: var(--deep); }
+  .pack-check {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    border: 1.5px solid rgba(255,255,255,0.25);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+  .pack-emoji { font-size: 18px; }
+  .pack-label { font-size: 13px; color: rgba(255,253,248,0.85); }
+
+  /* ===== RULES / LAWS ===== */
+  .law-card {
+    background: linear-gradient(135deg, rgba(232,68,26,0.15), rgba(26,10,0,0.8));
+    border: 1px solid rgba(232,68,26,0.25);
+    border-radius: var(--radius);
+    padding: 18px;
+    margin-bottom: 12px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .law-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 36px;
+    line-height: 1;
+    color: rgba(232,68,26,0.5);
+    flex-shrink: 0;
+    width: 36px;
+  }
+  .law-text-title {
+    font-weight: 600;
+    font-size: 15px;
+    color: var(--white);
+    margin-bottom: 3px;
+  }
+  .law-text-desc {
+    font-size: 13px;
+    color: rgba(255,253,248,0.6);
+    line-height: 1.5;
+  }
+
+  /* ===== BUDGET ===== */
+  .budget-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .budget-table tr {
+    border-bottom: 1px solid rgba(255,255,255,0.06);
+  }
+  .budget-table tr:last-child { border-bottom: none; }
+  .budget-table td {
+    padding: 12px 4px;
+    font-size: 14px;
+    color: rgba(255,253,248,0.8);
+  }
+  .budget-table td:first-child { font-weight: 500; color: var(--white); }
+  .budget-table td:last-child { text-align: right; font-weight: 600; color: var(--sun); }
+  .budget-total td {
+    padding-top: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--white) !important;
+    border-top: 1px solid rgba(245,166,35,0.3);
+  }
+  .budget-total td:last-child { color: var(--sun) !important; font-size: 20px; }
+
+  /* ===== ESSENTIALS PILLS ===== */
+  .pill-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .pill {
+    background: rgba(255,255,255,0.07);
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 6px 14px;
+    border-radius: 100px;
+    font-size: 12px;
+    color: rgba(255,253,248,0.8);
+  }
+  .pill.hot { background: rgba(232,68,26,0.2); border-color: rgba(232,68,26,0.35); color: #FF8A6A; }
+  .pill.cool { background: rgba(27,108,168,0.2); border-color: rgba(75,163,216,0.35); color: #7BCFFF; }
+  .pill.gold { background: rgba(245,166,35,0.15); border-color: rgba(245,166,35,0.3); color: var(--sun); }
+
+  /* ===== QUOTE ===== */
+  .quote-block {
+    border-left: 3px solid var(--sun);
+    padding: 16px 20px;
+    margin: 24px 0;
+    background: rgba(245,166,35,0.06);
+    border-radius: 0 12px 12px 0;
+  }
+  .quote-text {
+    font-family: 'Playfair Display', serif;
+    font-style: italic;
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--sand);
+  }
+  .quote-author {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sun);
+    margin-top: 8px;
+    opacity: 0.7;
+  }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.08), transparent);
+    margin: 0 20px;
+  }
+
+  /* ===== WEATHER BAR ===== */
+  .weather-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    margin-top: 16px;
+  }
+  .weather-item {
+    background: rgba(255,255,255,0.04);
+    border-radius: 10px;
+    padding: 12px 8px;
+    text-align: center;
+    border: 1px solid rgba(255,255,255,0.06);
+  }
+  .weather-icon { font-size: 22px; display: block; margin-bottom: 6px; }
+  .weather-day { font-size: 10px; letter-spacing: 1px; color: rgba(255,253,248,0.5); margin-bottom: 4px; }
+  .weather-temp { font-family: 'Bebas Neue', sans-serif; font-size: 20px; color: var(--sun); }
+  .weather-low { font-size: 10px; color: var(--sea-light); }
+
+  /* ===== FOOTER ===== */
+  .footer {
+    background: linear-gradient(180deg, var(--deep) 0%, #000000 100%);
+    padding: 48px 24px 60px;
+    text-align: center;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+  .footer-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    letter-spacing: 3px;
+    background: linear-gradient(90deg, var(--fire), var(--sun));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 8px;
+  }
+  .footer-sub {
+    font-size: 13px;
+    color: rgba(255,253,248,0.4);
+    line-height: 1.6;
+  }
+
+  /* ===== NAV ===== */
+  .sticky-nav {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 100;
+    background: rgba(26,10,0,0.85);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 100px;
+    padding: 8px 6px;
+    display: flex;
+    gap: 2px;
+  }
+  .nav-btn {
+    background: transparent;
+    border: none;
+    color: rgba(255,253,248,0.5);
+    font-size: 10px;
+    padding: 8px 12px;
+    border-radius: 100px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+  .nav-btn .nav-icon { font-size: 16px; }
+  .nav-btn.active, .nav-btn:hover {
+    background: rgba(245,166,35,0.2);
+    color: var(--sun);
+  }
+
+  .timeline-bold {
+    color: var(--white) !important;
+    font-size: 18px !important;
+    font-weight: 700 !important;
+  }
+  .timeline-horaire {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,253,248,0.45);
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    font-variant-numeric: tabular-nums;
+  }
+  .timeline-horaire-bold {
+    color: var(--sun) !important;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+  }
+  .timeline-item.timeline-highlight {
+    background: rgba(245,166,35,0.06);
+    border: 1px solid rgba(245,166,35,0.18);
+    border-radius: 12px;
+    padding: 14px 14px 14px 0;
+    margin-left: -14px;
+    padding-left: 14px;
+  }
+  .timeline-item.timeline-highlight::before {
+    background: var(--fire);
+    box-shadow: 0 0 0 3px rgba(232,68,26,0.3);
+  }
+
+  /* ===== CREW PHOTO CARDS ===== */
+  .crew-card-photo {
+    background: rgba(255,253,248,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 14px;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
+  }
+  .crew-card-photo:hover { border-color: rgba(245,166,35,0.3); transform: scale(1.02); }
+  .crew-card-photo:active { transform: scale(0.98); }
+  .crew-photo {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    flex-shrink: 0;
+    border: 2.5px solid rgba(245,166,35,0.5);
+    box-shadow: 0 0 0 4px rgba(245,166,35,0.12), 0 4px 12px rgba(0,0,0,0.3);
+  }
+  .crew-name {
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--white);
+  }
+  .crew-surname {
+    font-size: 11px;
+    color: rgba(245,166,35,0.7);
+    letter-spacing: 1px;
+    margin-top: 3px;
+  }
+  .crew-boarding-link {
+    margin-top: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 10px;
+    color: rgba(255,253,248,0.25);
+    letter-spacing: 0.5px;
+    text-decoration: none;
+    border: 1px solid rgba(255,255,255,0.1);
+    padding: 3px 8px;
+    border-radius: 100px;
+    background: rgba(255,255,255,0.04);
+    cursor: default;
+    pointer-events: none;
+  }
+  .crew-boarding-link:hover {
+    background: rgba(255,255,255,0.04);
+    border-color: rgba(255,255,255,0.1);
+    color: rgba(255,253,248,0.25);
+  }
+
+  /* ===== PROGRAMME CONCIS ===== */
+  .prog-list {
+    padding: 8px 0 4px;
+    background: rgba(255,253,248,0.02);
+  }
+  .prog-item {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    padding: 10px 20px;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    transition: background 0.15s ease;
+  }
+  .prog-item:last-child { border-bottom: none; }
+  .prog-item:active { background: rgba(255,255,255,0.04); }
+  .prog-time {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: rgba(255,253,248,0.35);
+    min-width: 80px;
+    flex-shrink: 0;
+    line-height: 1.1;
+  }
+  .prog-time-end {
+    display: block;
+    font-size: 13px;
+    color: rgba(255,253,248,0.2);
+    letter-spacing: 0;
+  }
+  .prog-time-end.prog-late {
+    color: rgba(232,68,26,0.6);
+  }
+  .prog-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,253,248,0.8);
+    line-height: 1.4;
+    flex: 1;
+    padding-left: 12px;
+    border-left: 2px solid rgba(255,255,255,0.07);
+  }
+  .prog-item.prog-bold .prog-time {
+    color: var(--white);
+    font-size: 22px;
+  }
+  .prog-item.prog-bold .prog-label {
+    color: var(--white);
+    font-weight: 700;
+    border-left-color: rgba(245,166,35,0.4);
+  }
+  .prog-item.prog-highlight {
+    background: rgba(245,166,35,0.06);
+  }
+  .prog-item.prog-highlight .prog-time {
+    color: var(--sun);
+    font-size: 22px;
+  }
+  .prog-item.prog-highlight .prog-time-end {
+    color: rgba(245,166,35,0.5);
+  }
+  .prog-item.prog-highlight .prog-label {
+    color: var(--white);
+    font-weight: 600;
+    border-left-color: rgba(245,166,35,0.5);
+  }
+
+  /* ===== DAY BLOCKS ===== */
+  .day-block {
+    margin-bottom: 28px;
+    border-radius: 20px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .day-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    background: linear-gradient(135deg, rgba(245,166,35,0.15), rgba(232,68,26,0.08));
+    border-bottom: 1px solid rgba(255,255,255,0.07);
+  }
+  .day-number {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 48px;
+    line-height: 1;
+    color: rgba(245,166,35,0.25);
+    flex-shrink: 0;
+    width: 44px;
+  }
+  .day-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 1px;
+    color: var(--white);
+  }
+  .day-sub {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--sun);
+    opacity: 0.7;
+    margin-top: 2px;
+  }
+  .day-emoji {
+    margin-left: auto;
+    font-size: 28px;
+  }
+  .day-block .timeline {
+    padding: 20px 20px 8px 44px;
+    background: rgba(255,253,248,0.02);
+  }
+  .day-block .timeline::before {
+    left: 24px;
+  }
+  .day-block .timeline-item::before {
+    left: -20px;
+  }
+
+  /* ===== CHAMBRES ===== */
+  .chambre-card {
+    border-radius: 14px;
+    padding: 14px 16px;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .chambre-double {
+    background: linear-gradient(135deg, rgba(245,166,35,0.08), rgba(232,68,26,0.05));
+    border: 1px solid rgba(245,166,35,0.2);
+  }
+  .chambre-solo {
+    background: rgba(75,163,216,0.07);
+    border: 1px solid rgba(75,163,216,0.2);
+    margin-bottom: 0;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 14px;
+  }
+  .chambre-num {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 40px;
+    line-height: 1;
+    color: rgba(245,166,35,0.2);
+    flex-shrink: 0;
+    width: 36px;
+  }
+  .chambre-num-solo {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 28px;
+    line-height: 1;
+    color: rgba(75,163,216,0.3);
+    margin-bottom: 10px;
+  }
+  .chambre-occupants {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    flex-wrap: wrap;
+  }
+  .chambre-person {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 100px;
+  }
+  .chambre-person-solo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .chambre-photo {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    flex-shrink: 0;
+    border: 2px solid rgba(245,166,35,0.35);
+    box-shadow: 0 0 0 3px rgba(245,166,35,0.08);
+  }
+  .chambre-photo-solo {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    flex-shrink: 0;
+    border: 2px solid rgba(75,163,216,0.35);
+    box-shadow: 0 0 0 3px rgba(75,163,216,0.08);
+  }
+  .chambre-name {
+    font-weight: 700;
+    font-size: 13px;
+    color: var(--white);
+    line-height: 1.2;
+  }
+  .chambre-surname {
+    font-size: 10px;
+    color: rgba(245,166,35,0.6);
+    letter-spacing: 0.5px;
+    margin-top: 1px;
+  }
+  .chambre-plus {
+    font-size: 18px;
+    font-weight: 300;
+    color: rgba(255,255,255,0.2);
+    flex-shrink: 0;
+  }
+
+  /* ===== ACOMPTE LIST ===== */
+  .acompte-list {
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid rgba(255,255,255,0.07);
+  }
+  .acompte-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 11px 14px;
+    border-bottom: 1px solid rgba(255,255,255,0.05);
+    background: rgba(255,255,255,0.02);
+  }
+  .acompte-item:last-child { border-bottom: none; }
+  .acompte-item.acompte-special { background: rgba(255,255,255,0.01); }
+  .acompte-item.acompte-high { background: rgba(245,166,35,0.05); }
+  .acompte-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,253,248,0.85);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .acompte-note {
+    font-size: 10px;
+    background: rgba(75,163,216,0.2);
+    color: #7BCFFF;
+    padding: 2px 7px;
+    border-radius: 100px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+  }
+  .acompte-amount {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: var(--sun);
+  }
+  .acompte-amount.acompte-low { color: rgba(75,163,216,0.9); }
+  .acompte-amount.acompte-high-amount { color: #FF8A6A; }
+
+  /* ===== BANK CARD ===== */
+  .bank-card {
+    background: linear-gradient(135deg, rgba(10,40,110,0.5), rgba(26,10,0,0.7));
+    border: 1px solid rgba(255,210,60,0.3);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-top: 16px;
+  }
+  .bank-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+  .bank-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 20px;
+    letter-spacing: 1px;
+    color: #FFD700;
+  }
+  .bank-sub {
+    font-size: 11px;
+    color: rgba(255,253,248,0.45);
+    margin-top: 3px;
+    line-height: 1.4;
+  }
+  .bank-details { display: flex; flex-direction: column; gap: 10px; }
+  .bank-row {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+  }
+  .bank-label {
+    font-size: 10px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,253,248,0.35);
+  }
+  .bank-value {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--white);
+  }
+  .bank-iban {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 26px;
+    letter-spacing: 3px;
+    color: #FFD700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .copy-hint {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    letter-spacing: 1px;
+    color: rgba(75,163,216,0.7);
+    font-weight: 500;
+    background: rgba(75,163,216,0.1);
+    padding: 3px 8px;
+    border-radius: 100px;
+    border: 1px solid rgba(75,163,216,0.2);
+  }
+
+  /* ===== BUDGET TABLE (3 cols) ===== */
+  .budget-table td:nth-child(2) {
+    color: rgba(255,253,248,0.35);
+    font-size: 11px;
+    font-weight: 400;
+    padding: 12px 6px;
+  }
+  .budget-table td:last-child {
+    text-align: right;
+    font-weight: 700;
+    color: var(--sun);
+    white-space: nowrap;
+  }
+
+  /* ===== SECTION COLORS ===== */
+  .section-vols { background: linear-gradient(180deg, rgba(27,108,168,0.08) 0%, transparent 100%); }
+  .section-programme { background: linear-gradient(180deg, rgba(232,68,26,0.06) 0%, transparent 100%); }
+  .section-budget { background: linear-gradient(180deg, rgba(245,166,35,0.06) 0%, transparent 100%); }
+
+  /* Smooth section fade-in */
+  .animate-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .animate-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY NAV -->
+<nav class="sticky-nav">
+  <button class="nav-btn" onclick="goTo('#crew')"><span class="nav-icon">🇪🇸</span>Crew</button>
+  <button class="nav-btn" onclick="goTo('#vols')"><span class="nav-icon">✈️</span>Vols</button>
+  <button class="nav-btn" onclick="goTo('#programme')"><span class="nav-icon">🗓</span>Plan</button>
+  <button class="nav-btn" onclick="goTo('#budget')"><span class="nav-icon">💸</span>Pognon</button>
+  <button class="nav-btn" onclick="goTo('#packing')"><span class="nav-icon">🎒</span>Sac</button>
+  <button class="nav-btn" onclick="goTo('#chambres')"><span class="nav-icon">🛏️</span>Chambres</button>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+
+  <!-- Particules flottantes -->
+  <div class="hero-particles" id="particles"></div>
+
+  <!-- Contenu principal -->
+  <div class="hero-content">
+    <div class="hero-club-badge">Club 41 · 985 Liège Notger · IRO 2026</div>
+    <div class="hero-iro-line">Voyage International Relations Officer</div>
+    <div class="hero-title">MÁLAGA</div>
+    <div class="hero-title-accent">12 gars. 4 jours. ¡Vamos!</div>
+    <div class="hero-dates">
+      <div class="hero-date-pill">📅 <span>16 → 19 Avril</span> 2026</div>
+      <div class="hero-date-pill">🇪🇸 <span>Andalousie</span> · Espagne</div>
+    </div>
+  </div>
+
+  <!-- Logo Club 41 utilisé comme soleil -->
+  <div class="logo-sun-wrapper">
+    <div class="logo-halo"></div>
+    <!-- Rayons SVG animés -->
+    <svg class="logo-rays" viewBox="0 0 440 440" xmlns="http://www.w3.org/2000/svg">
+      <g transform="translate(220,220)">
+        <!-- 16 rayons -->
+        <line x1="0" y1="-100" x2="0" y2="-200" stroke="rgba(255,210,50,0.6)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="38" y1="-92" x2="77" y2="-184" stroke="rgba(255,210,50,0.4)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="71" y1="-71" x2="141" y2="-141" stroke="rgba(255,210,50,0.6)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="92" y1="-38" x2="184" y2="-77" stroke="rgba(255,210,50,0.4)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="100" y1="0" x2="200" y2="0" stroke="rgba(255,210,50,0.6)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="92" y1="38" x2="184" y2="77" stroke="rgba(255,210,50,0.4)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="71" y1="71" x2="141" y2="141" stroke="rgba(255,210,50,0.6)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="38" y1="92" x2="77" y2="184" stroke="rgba(255,210,50,0.4)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="0" y1="100" x2="0" y2="200" stroke="rgba(255,210,50,0.6)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="-38" y1="92" x2="-77" y2="184" stroke="rgba(255,210,50,0.4)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="-71" y1="71" x2="-141" y2="141" stroke="rgba(255,210,50,0.6)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="-92" y1="38" x2="-184" y2="77" stroke="rgba(255,210,50,0.4)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="-100" y1="0" x2="-200" y2="0" stroke="rgba(255,210,50,0.6)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="-92" y1="-38" x2="-184" y2="-77" stroke="rgba(255,210,50,0.4)" stroke-width="2" stroke-linecap="round"/>
+        <line x1="-71" y1="-71" x2="-141" y2="-141" stroke="rgba(255,210,50,0.6)" stroke-width="3" stroke-linecap="round"/>
+        <line x1="-38" y1="-92" x2="-77" y2="-184" stroke="rgba(255,210,50,0.4)" stroke-width="2" stroke-linecap="round"/>
+      </g>
+    </svg>
+    <img src="TR41.png" class="logo-img" alt="Club 41 Belgium">
+  </div>
+
+  <!-- Mer -->
+  <div class="hero-sea">
+    <div class="sea-wave sea-wave-2"></div>
+    <div class="sea-wave sea-wave-1"></div>
+    <div class="sea-sparkle" style="left:15%;bottom:40px;animation-delay:0.3s"></div>
+    <div class="sea-sparkle" style="left:30%;bottom:55px;animation-delay:0.9s;width:4px;height:4px"></div>
+    <div class="sea-sparkle" style="left:55%;bottom:45px;animation-delay:0.5s"></div>
+    <div class="sea-sparkle" style="left:70%;bottom:60px;animation-delay:1.2s;width:4px;height:4px"></div>
+    <div class="sea-sparkle" style="left:85%;bottom:35px;animation-delay:0.7s"></div>
+  </div>
+
+  <!-- Scroll indicator -->
+  <div class="hero-scroll">
+    <span>découvrir</span>
+    <svg width="16" height="20" viewBox="0 0 16 20" fill="none"><path d="M8 0v16M2 10l6 6 6-6" stroke="#0A2A6E" stroke-width="2" stroke-linecap="round"/></svg>
+  </div>
+</section>
+
+<!-- CREW BANNER -->
+<div class="crew-banner">
+  🤙 &nbsp; MÁLAGA NOS ESPERA &nbsp; · &nbsp; LOS VALIENTES ESTÁN LISTOS &nbsp; 🤙
+</div>
+
+<!-- CREW SECTION -->
+<section class="section animate-on-scroll" id="crew" style="padding-bottom:20px">
+  <div class="section-label">Le squad</div>
+  <div class="section-title">LES 12</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+
+    <div class="crew-card-photo">
+      <img src="Benoit.png" class="crew-photo" alt="Benoit">
+      <div>
+        <div class="crew-name">Benoit</div>
+        <div class="crew-surname">Stalport</div>
+        <a class="crew-boarding-link" href="#" onclick="return false">🎫 Boarding pass</a>
+      </div>
+    </div>
+
+    <div class="crew-card-photo">
+      <img src="Juan.png" class="crew-photo" alt="Juan">
+      <div>
+        <div class="crew-name">Juan</div>
+        <div class="crew-surname">Tarazaga</div>
+        <a class="crew-boarding-link" href="#" onclick="return false">🎫 Boarding pass</a>
+      </div>
+    </div>
+
+    <div class="crew-card-photo">
+      <img src="Pierre.png" class="crew-photo" alt="Pierre">
+      <div>
+        <div class="crew-name">Pierre</div>
+        <div class="crew-surname">Bonhomme</div>
+        <a class="crew-boarding-link" href="#" onclick="return false">🎫 Boarding pass</a>
+      </div>
+    </div>
+
+    <div class="crew-card-photo">
+      <img src="Raphael.png" class="crew-photo" alt="Raphael">
+      <div>
+        <div class="crew-name">Raphaël</div>
+        <div class="crew-surname">Weijenberg</div>
+        <a class="crew-boarding-link" href="#" onclick="return false">🎫 Boarding pass</a>
+      </div>
+    </div>
+
+    <div class="crew-card-photo">
+      <img src="greg.png" class="crew-photo" alt="Gregory">
+      <div>
+        <div class="crew-name">Gregory</div>
+        <div class="crew-surname">Fontaine</div>
+        <a class="crew-boarding-link" href="#" onclick="return false">🎫 Boarding pass</a>
+      </div>
+    </div>
+
+    <div class="crew-card-photo">
+      <img src="Mathieu.png" class="crew-photo" alt="Matthieu">
+      <div>
+        <div class="crew-name">Matthieu</div>
+        <div class="crew-surname">Mannesberg</div>
+        <a class="crew-boarding-link" href="#" onclick="return false">🎫 Boarding pass</a>
+      </div>
+    </div>
+
+    <div class="crew-card-photo">
+      <img src="Francois.png" class="crew-photo" alt="François">
+      <div>
+        <div class="crew-name">François</div>
+        <div class="crew-surname">Minsier</div>
+        <a class="crew-boarding-link" href="#" onclick="return false">🎫 Boarding pass</a>
+      </div>
+    </div>
+
+    <div class="crew-card-photo">
+      <img src="PierreBurtin.png" class="crew-photo" alt="Pierre Burtin">
+      <div>
+        <div class="crew-name">Pierre</div>
+        <div class="crew-surname">Burtin</div>
+        <a class="crew-boarding-link" href="#" onclick="return false">🎫 Boarding pass</a>
+      </div>
+    </div>
+
+    <div class="crew-card-photo">
+      <img src="Antoine.png" class="crew-photo" alt="Antoine">
+      <div>
+        <div class="crew-name">Antoine</div>
+        <div class="crew-surname">Deprez</div>
+        <a class="crew-boarding-link" href="#" onclick="return false">🎫 Boarding pass</a>
+      </div>
+    </div>
+
+    <div class="crew-card-photo">
+      <img src="Michel.png" class="crew-photo" alt="Michel">
+      <div>
+        <div class="crew-name">Michel</div>
+        <div class="crew-surname">Ernotte</div>
+        <a class="crew-boarding-link" href="#" onclick="return false">🎫 Boarding pass</a>
+      </div>
+    </div>
+
+    <div class="crew-card-photo">
+      <img src="Alessandro.png" class="crew-photo" alt="Alessandro">
+      <div>
+        <div class="crew-name">Alessandro</div>
+        <div class="crew-surname">Carlisi</div>
+        <a class="crew-boarding-link" href="#" onclick="return false">🎫 Boarding pass</a>
+      </div>
+    </div>
+
+    <div class="crew-card-photo">
+      <img src="pascal.png" class="crew-photo" alt="Pascal">
+      <div>
+        <div class="crew-name">Pascal</div>
+        <div class="crew-surname">Appeldoorn</div>
+        <a class="crew-boarding-link" href="#" onclick="return false">🎫 Boarding pass</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- VOLS -->
+<section class="section section-vols animate-on-scroll" id="vols">
+  <div class="section-label">Section 01</div>
+  <div class="section-title">LES VOLS ✈️</div>
+
+  <div class="flight-card">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+      <span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(75,163,216,0.8)">ALLER</span>
+      <span style="font-size:12px;color:rgba(255,253,248,0.4)">·</span>
+      <span style="font-size:12px;color:rgba(255,253,248,0.5)">Jeudi 16 avril 2026</span>
+    </div>
+    <div class="flight-route">
+      <div>
+        <div class="flight-city">BRU</div>
+        <div style="font-size:11px;color:rgba(255,253,248,0.4)">Bruxelles</div>
+      </div>
+      <div class="flight-arrow">
+        <div class="flight-line"></div>
+        <div class="flight-plane">✈️</div>
+        <div class="flight-line"></div>
+      </div>
+      <div style="text-align:right">
+        <div class="flight-city">AGP</div>
+        <div style="font-size:11px;color:rgba(255,253,248,0.4)">Málaga</div>
+      </div>
+    </div>
+    <div class="flight-details">
+      <div class="flight-detail-item">
+        <div class="flight-detail-label">Départ</div>
+        <div class="flight-detail-value">11:00</div>
+      </div>
+      <div class="flight-detail-item">
+        <div class="flight-detail-label">Arrivée</div>
+        <div class="flight-detail-value">13:55</div>
+      </div>
+      <div class="flight-detail-item">
+        <div class="flight-detail-label">Vol</div>
+        <div class="flight-detail-value">VY2151</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:8px">
+      <span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,253,248,0.35)">Compagnie</span>
+      <span style="font-size:13px;font-weight:600;color:#FFD700;letter-spacing:1px">VUELING</span>
+      <span style="margin-left:auto;font-size:12px;color:rgba(255,253,248,0.4)">✈ 2h55 de vol</span>
+    </div>
+  </div>
+
+  <div class="flight-card">
+    <div style="display:flex;align-items:center;gap:8px;margin-bottom:14px">
+      <span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(232,68,26,0.9)">RETOUR</span>
+      <span style="font-size:12px;color:rgba(255,253,248,0.4)">·</span>
+      <span style="font-size:12px;color:rgba(255,253,248,0.5)">Dimanche 19 avril 2026</span>
+    </div>
+    <div class="flight-route">
+      <div>
+        <div class="flight-city">AGP</div>
+        <div style="font-size:11px;color:rgba(255,253,248,0.4)">Málaga</div>
+      </div>
+      <div class="flight-arrow">
+        <div class="flight-line"></div>
+        <div class="flight-plane" style="transform:scaleX(-1);display:inline-block">✈️</div>
+        <div class="flight-line"></div>
+      </div>
+      <div style="text-align:right">
+        <div class="flight-city">BRU</div>
+        <div style="font-size:11px;color:rgba(255,253,248,0.4)">Bruxelles</div>
+      </div>
+    </div>
+    <div class="flight-details">
+      <div class="flight-detail-item">
+        <div class="flight-detail-label">Départ</div>
+        <div class="flight-detail-value">18:05</div>
+      </div>
+      <div class="flight-detail-item">
+        <div class="flight-detail-label">Arrivée</div>
+        <div class="flight-detail-value">21:00</div>
+      </div>
+      <div class="flight-detail-item">
+        <div class="flight-detail-label">Vol</div>
+        <div class="flight-detail-value">VY2150</div>
+      </div>
+    </div>
+    <div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.07);display:flex;align-items:center;gap:8px">
+      <span style="font-size:11px;letter-spacing:2px;text-transform:uppercase;color:rgba(255,253,248,0.35)">Compagnie</span>
+      <span style="font-size:13px;font-weight:600;color:#FFD700;letter-spacing:1px">VUELING</span>
+      <span style="margin-left:auto;font-size:12px;color:rgba(255,253,248,0.4)">✈ 2h55 de vol</span>
+    </div>
+  </div>
+
+  <!-- Météo -->
+  <div class="card" style="margin-top:8px">
+    <span class="card-icon">🌤️</span>
+    <div class="card-title">Météo prévue</div>
+    <div class="card-text">Málaga en avril : <strong>24-27°C</strong> le jour, <strong>15°C</strong> la nuit. Du soleil, pas de pluie prévue. La mer sera à ~17°C — soit "rafraîchissante" pour les Belges, soit "glaciale" pour tout le monde.</div>
+    <div class="weather-grid">
+      <div class="weather-item">
+        <span class="weather-icon">☀️</span>
+        <div class="weather-day">JEU 16</div>
+        <div class="weather-temp">25°</div>
+        <div class="weather-low">17° nuit</div>
+      </div>
+      <div class="weather-item">
+        <span class="weather-icon">⛅</span>
+        <div class="weather-day">VEN 17</div>
+        <div class="weather-temp">26°</div>
+        <div class="weather-low">16° nuit</div>
+      </div>
+      <div class="weather-item">
+        <span class="weather-icon">☀️</span>
+        <div class="weather-day">SAM 18</div>
+        <div class="weather-temp">27°</div>
+        <div class="weather-low">17° nuit</div>
+      </div>
+      <div class="weather-item">
+        <span class="weather-icon">☀️</span>
+        <div class="weather-day">DIM 19</div>
+        <div class="weather-temp">24°</div>
+        <div class="weather-low">15° nuit</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- PROGRAMME -->
+<section class="section section-programme animate-on-scroll" id="programme">
+  <div class="section-label">Section 02</div>
+  <div class="section-title">LE PROGRAMME 🗓</div>
+
+  <!-- JOUR 1 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-number">01</div>
+      <div>
+        <div class="day-name">Jeudi 16 Avril</div>
+        <div class="day-sub">Jour d'arrivée</div>
+      </div>
+      <div class="day-emoji">🛬</div>
+    </div>
+    <div class="prog-list">
+      <div class="prog-item prog-bold">
+        <div class="prog-time">8h45</div>
+        <div class="prog-label">🚗 Covoiturage / train Liège → BRU</div>
+      </div>
+      <div class="prog-item prog-highlight">
+        <div class="prog-time">11h00<span class="prog-time-end">13h55</span></div>
+        <div class="prog-label">✈️ Vol BRU → AGP · VY2151</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">14h30</div>
+        <div class="prog-label">🏨 Arrivée hôtel & petits verres</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">17h00</div>
+        <div class="prog-label">🥘 Tapas en ville & petits verres</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">20h00</div>
+        <div class="prog-label">🎁 Surprise & petits verres</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">21h30<span class="prog-time-end prog-late">→ 6h?</span></div>
+        <div class="prog-label">🍺 Bars & petits verres</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOUR 2 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-number">02</div>
+      <div>
+        <div class="day-name">Vendredi 17 Avril</div>
+        <div class="day-sub">Culture & pescador</div>
+      </div>
+      <div class="day-emoji">🏛️</div>
+    </div>
+    <div class="prog-list">
+      <div class="prog-item">
+        <div class="prog-time">11h00</div>
+        <div class="prog-label">🏛️ Un peu de culture <em style="opacity:0.5;font-size:11px">(on n'est plus à table, bordel!)</em></div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">13h00</div>
+        <div class="prog-label">🍽️ Resto pour s'en remettre</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">16h00</div>
+        <div class="prog-label">🃏 Culture pour les uns, belottes pour les autres</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">18h00</div>
+        <div class="prog-label">🛌 Hôtel, repos & mise en condition</div>
+      </div>
+      <div class="prog-item prog-highlight">
+        <div class="prog-time">20h30<span class="prog-time-end">23h30</span></div>
+        <div class="prog-label">🌊 La cesta del pescador</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">23h30<span class="prog-time-end prog-late">→ 6h?</span></div>
+        <div class="prog-label">🕺 Bars, boîtes & cul...ture</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOUR 3 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-number">03</div>
+      <div>
+        <div class="day-name">Samedi 18 Avril</div>
+        <div class="day-sub">La grande journée</div>
+      </div>
+      <div class="day-emoji">⚔️</div>
+    </div>
+    <div class="prog-list">
+      <div class="prog-item prog-bold">
+        <div class="prog-time">10h30</div>
+        <div class="prog-label">🚗 Départ — destination mystère</div>
+      </div>
+      <div class="prog-item prog-highlight">
+        <div class="prog-time">12h00<span class="prog-time-end">17h30</span></div>
+        <div class="prog-label">⚔️ La Marcha de los Valientes</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">19h00</div>
+        <div class="prog-label">🛌 Hôtel, repos & remise en condition</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">21h00</div>
+        <div class="prog-label">🥩 Resto de cochon</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">23h30<span class="prog-time-end prog-late">→ 6h?</span></div>
+        <div class="prog-label">🎉 Bars, boîtes & sélection naturelle</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- JOUR 4 -->
+  <div class="day-block">
+    <div class="day-header">
+      <div class="day-number">04</div>
+      <div>
+        <div class="day-name">Dimanche 19 Avril</div>
+        <div class="day-sub">Retour des héros</div>
+      </div>
+      <div class="day-emoji">🌅</div>
+    </div>
+    <div class="prog-list">
+      <div class="prog-item prog-bold">
+        <div class="prog-time">10h00<span class="prog-time-end">10h30</span></div>
+        <div class="prog-label">🏨 Check out</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">11h00</div>
+        <div class="prog-label">🏙️ Dernière visite en ville</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">12h00</div>
+        <div class="prog-label">☀️ See, sport and sun</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">13h00<span class="prog-time-end">16h00</span></div>
+        <div class="prog-label">🏖️ Resto de plage — La Misa del Mediodía</div>
+      </div>
+      <div class="prog-item prog-bold">
+        <div class="prog-time" style="color:#FF6B6B;font-weight:800">16h MAX ⚠️</div>
+        <div class="prog-label">🚖 Taxi vers aéroport</div>
+      </div>
+      <div class="prog-item prog-highlight">
+        <div class="prog-time">18h05<span class="prog-time-end">21h00</span></div>
+        <div class="prog-label">✈️ Vol AGP → BRU · VY2150</div>
+      </div>
+      <div class="prog-item">
+        <div class="prog-time">23h00</div>
+        <div class="prog-label">💋 Bisous-bisous avec nos femmes</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- BUDGET -->
+<section class="section section-budget animate-on-scroll" id="budget">
+  <div class="section-label">Section 03</div>
+  <div class="section-title">LE BUDGET 💸</div>
+
+  <!-- Coûts fixes -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title">Avances réservées à ce jour</div>
+    <table class="budget-table">
+      <tr>
+        <td>✈️ Vol Vueling A/R</td>
+        <td style="color:rgba(255,253,248,0.45);font-size:12px">Juan & Matthieu : —</td>
+        <td>444 €</td>
+      </tr>
+      <tr>
+        <td>🏨 Hôtel — lit simple</td>
+        <td style="color:rgba(255,253,248,0.45);font-size:12px">chambre individuelle</td>
+        <td>304 €</td>
+      </tr>
+      <tr>
+        <td>🏨 Hôtel — lit double</td>
+        <td style="color:rgba(255,253,248,0.45);font-size:12px">chambre partagée</td>
+        <td>608 €</td>
+      </tr>
+      <tr>
+        <td>🎟️ Avance activités</td>
+        <td></td>
+        <td>100 €</td>
+      </tr>
+      <tr>
+        <td>🍽️ Avance restos</td>
+        <td></td>
+        <td>100 €</td>
+      </tr>
+    </table>
+  </div>
+
+  <!-- Info Tricount -->
+  <div class="card card-highlight" style="margin-bottom:16px">
+    <span class="card-icon">📱</span>
+    <div class="card-title">Le reste via Tricount</div>
+    <div class="card-text">
+      Bars, clubs, taxis, achats spontanés et autres dépenses imprévues seront gérés <strong>via Tricount</strong> pendant le séjour. Chacun ajoute ses dépenses en temps réel — le solde est calculé automatiquement à la fin du trip.<br><br>
+      <em style="color:rgba(245,166,35,0.7);font-size:12px">💡 Installez Tricount avant le départ et rejoignez le groupe "IRO Málaga 2026".</em>
+    </div>
+  </div>
+
+  <!-- Acompte table -->
+  <div class="card" style="margin-bottom:16px">
+    <div class="card-title" style="margin-bottom:16px">🏦 Acompte à verser maintenant</div>
+    <div style="font-size:13px;color:rgba(255,253,248,0.5);margin-bottom:14px;line-height:1.5">Veuillez virer le montant ci-dessous <strong style="color:var(--white)">dès que possible</strong> sur le compte de Benoit.</div>
+
+    <!-- Chaque personne -->
+    <div class="acompte-list">
+
+      <div class="acompte-item">
+        <div class="acompte-name">Benoit Stalport</div>
+        <div class="acompte-amount">900 €</div>
+      </div>
+      <div class="acompte-item acompte-special">
+        <div class="acompte-name">Juan Tarazaga <span class="acompte-note">sans vol</span></div>
+        <div class="acompte-amount acompte-low">450 €</div>
+      </div>
+      <div class="acompte-item">
+        <div class="acompte-name">Pierre Bonhomme</div>
+        <div class="acompte-amount">900 €</div>
+      </div>
+      <div class="acompte-item">
+        <div class="acompte-name">Raphaël Weijenberg</div>
+        <div class="acompte-amount">900 €</div>
+      </div>
+      <div class="acompte-item">
+        <div class="acompte-name">Gregory Fontaine</div>
+        <div class="acompte-amount">900 €</div>
+      </div>
+      <div class="acompte-item acompte-special">
+        <div class="acompte-name">Matthieu Mannesberg <span class="acompte-note">sans vol</span></div>
+        <div class="acompte-amount acompte-low">450 €</div>
+      </div>
+      <div class="acompte-item">
+        <div class="acompte-name">François Minsier</div>
+        <div class="acompte-amount">900 €</div>
+      </div>
+      <div class="acompte-item">
+        <div class="acompte-name">Pierre Burtin</div>
+        <div class="acompte-amount">900 €</div>
+      </div>
+      <div class="acompte-item">
+        <div class="acompte-name">Antoine Deprez</div>
+        <div class="acompte-amount">1 200 €</div>
+      </div>
+      <div class="acompte-item">
+        <div class="acompte-name">Michel Ernotte</div>
+        <div class="acompte-amount">1 200 €</div>
+      </div>
+      <div class="acompte-item">
+        <div class="acompte-name">Alessandro Carlisi</div>
+        <div class="acompte-amount">1 200 €</div>
+      </div>
+      <div class="acompte-item">
+        <div class="acompte-name">Pascal Appeldoorn</div>
+        <div class="acompte-amount">1 200 €</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Coordonnées bancaires -->
+  <div class="bank-card">
+    <div class="bank-header">
+      <span style="font-size:22px">🏦</span>
+      <div>
+        <div class="bank-title">Virement à effectuer</div>
+        <div class="bank-sub">Communication : "IRO Málaga 2026 — [Ton prénom]"</div>
+      </div>
+    </div>
+    <div class="bank-details">
+      <div class="bank-row">
+        <div class="bank-label">Bénéficiaire</div>
+        <div class="bank-value">Benoit Stalport</div>
+      </div>
+      <div class="bank-row">
+        <div class="bank-label">IBAN</div>
+        <div class="bank-iban" onclick="copyIBAN(this)">
+          BE33 6501 0668 2546
+          <span class="copy-hint">Tap pour copier</span>
+        </div>
+      </div>
+    </div>
+    <div id="copy-confirm" style="display:none;margin-top:10px;text-align:center;font-size:12px;color:#4CAF80;font-weight:600">✓ IBAN copié !</div>
+  </div>
+
+
+
+</section>
+
+<div class="divider"></div>
+
+<!-- PACKING -->
+<section class="section animate-on-scroll" id="packing">
+  <div class="section-label">Section 04</div>
+  <div class="section-title">L'ESSENTIEL 🎒</div>
+
+  <div class="card" style="margin-bottom:20px">
+    <div class="card-title">Ce qu'il faut avoir dans son sac 👇</div>
+    <div class="card-text" style="margin-bottom:16px">Clique pour cocher chaque item avant de partir.</div>
+
+    <div class="pack-grid" id="packingGrid">
+      <div class="pack-item" onclick="togglePack(this)"><div class="pack-check"></div><span class="pack-emoji">🛂</span><span class="pack-label">Carte d'identité</span></div>
+      <div class="pack-item" onclick="togglePack(this)"><div class="pack-check"></div><span class="pack-emoji">🧳</span><span class="pack-label">Bagage max 10kg</span></div>
+      <div class="pack-item" onclick="togglePack(this)"><div class="pack-check"></div><span class="pack-emoji">👟</span><span class="pack-label">Bonne paire de chaussures</span></div>
+      <div class="pack-item" onclick="togglePack(this)"><div class="pack-check"></div><span class="pack-emoji">🩱</span><span class="pack-label">Maillot</span></div>
+    </div>
+
+    <div style="margin-top:16px;padding:14px;background:rgba(232,68,26,0.1);border-radius:10px;font-size:13px;color:rgba(255,253,248,0.7);border:1px solid rgba(232,68,26,0.25);line-height:1.6">
+      ⚠️ <strong style="color:#FF8A6A">LA CARTE D'IDENTITÉ.</strong> Pas de passeport, pas de vacances. Vérifiez ce soir. Vérifiez demain matin. Vérifiez dans le taxi.<br>
+      <span style="font-size:12px;opacity:0.6">Et les chaussures fermées — surtout pour le Samedi. On ne dit pas pourquoi.</span>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- CHAMBRES -->
+<section class="section animate-on-scroll" id="chambres">
+  <div class="section-label">Section 05</div>
+  <div class="section-title">LES CHAMBRES 🛏️</div>
+  <div style="font-size:13px;color:rgba(255,253,248,0.5);margin-bottom:24px;line-height:1.6">
+    Proposition de répartition — <strong style="color:var(--white)">4 chambres doubles</strong> + <strong style="color:var(--white)">4 chambres solo</strong>.
+  </div>
+
+  <!-- Doubles -->
+  <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--sun);margin-bottom:12px">Chambres doubles</div>
+
+  <div class="chambre-card chambre-double">
+    <div class="chambre-num">01</div>
+    <div class="chambre-occupants">
+      <div class="chambre-person">
+        <img src="Benoit.png" class="chambre-photo" alt="Benoit">
+        <div>
+          <div class="chambre-name">Benoit</div>
+          <div class="chambre-surname">Stalport</div>
+        </div>
+      </div>
+      <div class="chambre-plus">+</div>
+      <div class="chambre-person">
+        <img src="Juan.png" class="chambre-photo" alt="Juan">
+        <div>
+          <div class="chambre-name">Juan</div>
+          <div class="chambre-surname">Tarazaga</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chambre-card chambre-double">
+    <div class="chambre-num">02</div>
+    <div class="chambre-occupants">
+      <div class="chambre-person">
+        <img src="Pierre.png" class="chambre-photo" alt="Pierre">
+        <div>
+          <div class="chambre-name">Pierre</div>
+          <div class="chambre-surname">Bonhomme</div>
+        </div>
+      </div>
+      <div class="chambre-plus">+</div>
+      <div class="chambre-person">
+        <img src="Raphael.png" class="chambre-photo" alt="Raphaël">
+        <div>
+          <div class="chambre-name">Raphaël</div>
+          <div class="chambre-surname">Weijenberg</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chambre-card chambre-double">
+    <div class="chambre-num">03</div>
+    <div class="chambre-occupants">
+      <div class="chambre-person">
+        <img src="greg.png" class="chambre-photo" alt="Gregory">
+        <div>
+          <div class="chambre-name">Gregory</div>
+          <div class="chambre-surname">Fontaine</div>
+        </div>
+      </div>
+      <div class="chambre-plus">+</div>
+      <div class="chambre-person">
+        <img src="Mathieu.png" class="chambre-photo" alt="Matthieu">
+        <div>
+          <div class="chambre-name">Matthieu</div>
+          <div class="chambre-surname">Mannesberg</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="chambre-card chambre-double" style="margin-bottom:28px">
+    <div class="chambre-num">04</div>
+    <div class="chambre-occupants">
+      <div class="chambre-person">
+        <img src="Francois.png" class="chambre-photo" alt="François">
+        <div>
+          <div class="chambre-name">François</div>
+          <div class="chambre-surname">Minsier</div>
+        </div>
+      </div>
+      <div class="chambre-plus">+</div>
+      <div class="chambre-person">
+        <img src="PierreBurtin.png" class="chambre-photo" alt="Pierre Burtin">
+        <div>
+          <div class="chambre-name">Pierre</div>
+          <div class="chambre-surname">Burtin</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Solo -->
+  <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(75,163,216,0.8);margin-bottom:12px">Chambres solo</div>
+
+  <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px">
+
+    <div class="chambre-card chambre-solo">
+      <div class="chambre-num-solo">05</div>
+      <div class="chambre-person-solo">
+        <img src="Antoine.png" class="chambre-photo-solo" alt="Antoine">
+        <div>
+          <div class="chambre-name">Antoine</div>
+          <div class="chambre-surname">Deprez</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chambre-card chambre-solo">
+      <div class="chambre-num-solo">06</div>
+      <div class="chambre-person-solo">
+        <img src="Michel.png" class="chambre-photo-solo" alt="Michel">
+        <div>
+          <div class="chambre-name">Michel</div>
+          <div class="chambre-surname">Ernotte</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chambre-card chambre-solo">
+      <div class="chambre-num-solo">07</div>
+      <div class="chambre-person-solo">
+        <img src="Alessandro.png" class="chambre-photo-solo" alt="Alessandro">
+        <div>
+          <div class="chambre-name">Alessandro</div>
+          <div class="chambre-surname">Carlisi</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="chambre-card chambre-solo">
+      <div class="chambre-num-solo">08</div>
+      <div class="chambre-person-solo">
+        <img src="pascal.png" class="chambre-photo-solo" alt="Pascal">
+        <div>
+          <div class="chambre-name">Pascal</div>
+          <div class="chambre-surname">Appeldoorn</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+<footer class="footer">
+  <div class="footer-title">¡VAMOS LOS VALIENTES! 🇪🇸</div>
+  <div class="footer-sub">
+    Málaga 2026 · 16 → 19 Avril<br><br>
+    <span style="color:rgba(245,166,35,0.6);font-size:12px;letter-spacing:1px">
+      Benoit · Juan · Pierre B · Raphaël · Gregory · Matthieu<br>
+      François · Pierre Bu · Antoine · Michel · Alessandro · Pascal
+    </span>
+  </div>
+  <div style="margin-top:32px;font-size:20px">🌞 🤙 🇪🇸 🍹 🌊 🕺 🌅</div>
+</footer>
+
+<!-- SPACER FOR NAV -->
+<div style="height:80px"></div>
+
+<script>
+  // Particules flottantes hero
+  const particlesEl = document.getElementById('particles');
+  if (particlesEl) {
+    for (let i = 0; i < 25; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 4 + 2;
+      p.style.cssText = `
+        width: ${size}px; height: ${size}px;
+        left: ${Math.random() * 100}%;
+        animation-duration: ${Math.random() * 8 + 6}s;
+        animation-delay: ${Math.random() * 8}s;
+        opacity: ${Math.random() * 0.6 + 0.2};
+        background: ${Math.random() > 0.5 ? 'rgba(255,220,80,0.8)' : 'rgba(255,255,255,0.7)'};
+      `;
+      particlesEl.appendChild(p);
+    }
+  }
+
+  // Copy IBAN
+  function copyIBAN(el) {
+    const iban = 'BE33650106682546';
+    if (navigator.clipboard) {
+      navigator.clipboard.writeText(iban).then(() => {
+        const confirm = document.getElementById('copy-confirm');
+        if (confirm) { confirm.style.display = 'block'; setTimeout(() => confirm.style.display = 'none', 2500); }
+      });
+    }
+  }
+
+  // Smooth scroll
+  function goTo(id) {
+    const el = document.querySelector(id);
+    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  // Packing toggle
+  function togglePack(el) {
+    el.classList.toggle('checked');
+    const check = el.querySelector('.pack-check');
+    check.innerHTML = el.classList.contains('checked') ? '✓' : '';
+  }
+
+  // Animate on scroll
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+      }
+    });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.animate-on-scroll').forEach(el => observer.observe(el));
+
+  // Active nav highlight
+  const sections = ['crew','vols','programme','budget','packing','chambres'];
+  const navBtns = document.querySelectorAll('.nav-btn');
+  
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.getBoundingClientRect().top < window.innerHeight / 2) {
+        current = id;
+      }
+    });
+    navBtns.forEach((btn, i) => {
+      btn.classList.toggle('active', sections[i] === current);
+    });
+  });
+</script>
+</body>
+</html>
