@@ -1080,6 +1080,7 @@
   }
   .form-input {
     width: 100%;
+    max-width: 100%;
     background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.12);
     border-radius: 10px;
@@ -1090,14 +1091,23 @@
     outline: none;
     transition: border-color 0.2s ease;
     box-sizing: border-box;
+    -webkit-appearance: none;
+    appearance: none;
   }
   .form-input:focus {
     border-color: rgba(245,166,35,0.5);
     background: rgba(255,255,255,0.09);
   }
   .form-input::placeholder { color: rgba(255,253,248,0.25); }
+  input[type="date"].form-input {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    max-width: 100%;
+  }
   input[type="date"].form-input::-webkit-calendar-picker-indicator {
     filter: invert(0.6);
+    flex-shrink: 0;
   }
   .form-submit {
     width: 100%;
@@ -1412,7 +1422,7 @@
       <div>
         <div class="crew-name">Benoit</div>
         <div class="crew-surname">Stalport</div>
-        <button class="crew-form-btn" onclick="openModal('Benoit Stalport')">📋 Mes infos</button>
+        <button class="crew-form-btn" onclick="openModal('Benoit Stalport')">Mes infos</button>
       </div>
     </div>
 
@@ -1421,7 +1431,7 @@
       <div>
         <div class="crew-name">Juan</div>
         <div class="crew-surname">Tarazaga</div>
-        <button class="crew-form-btn" onclick="openModal('Juan Tarazaga')">📋 Mes infos</button>
+        <button class="crew-form-btn" onclick="openModal('Juan Tarazaga')">Mes infos</button>
       </div>
     </div>
 
@@ -1430,7 +1440,7 @@
       <div>
         <div class="crew-name">Pierre</div>
         <div class="crew-surname">Bonhomme</div>
-        <button class="crew-form-btn" onclick="openModal('Pierre Bonhomme')">📋 Mes infos</button>
+        <button class="crew-form-btn" onclick="openModal('Pierre Bonhomme')">Mes infos</button>
       </div>
     </div>
 
@@ -1439,7 +1449,7 @@
       <div>
         <div class="crew-name">Raphaël</div>
         <div class="crew-surname">Weijenberg</div>
-        <button class="crew-form-btn" onclick="openModal('Raphaël Weijenberg')">📋 Mes infos</button>
+        <button class="crew-form-btn" onclick="openModal('Raphaël Weijenberg')">Mes infos</button>
       </div>
     </div>
 
@@ -1448,7 +1458,7 @@
       <div>
         <div class="crew-name">Gregory</div>
         <div class="crew-surname">Fontaine</div>
-        <button class="crew-form-btn" onclick="openModal('Gregory Fontaine')">📋 Mes infos</button>
+        <button class="crew-form-btn" onclick="openModal('Gregory Fontaine')">Mes infos</button>
       </div>
     </div>
 
@@ -1457,7 +1467,7 @@
       <div>
         <div class="crew-name">Mathieu</div>
         <div class="crew-surname">Mannesberg</div>
-        <button class="crew-form-btn" onclick="openModal('Mathieu Mannesberg')">📋 Mes infos</button>
+        <button class="crew-form-btn" onclick="openModal('Mathieu Mannesberg')">Mes infos</button>
       </div>
     </div>
 
@@ -1466,7 +1476,7 @@
       <div>
         <div class="crew-name">François</div>
         <div class="crew-surname">Minsier</div>
-        <button class="crew-form-btn" onclick="openModal('François Minsier')">📋 Mes infos</button>
+        <button class="crew-form-btn" onclick="openModal('François Minsier')">Mes infos</button>
       </div>
     </div>
 
@@ -1475,7 +1485,7 @@
       <div>
         <div class="crew-name">Pierre</div>
         <div class="crew-surname">Burtin</div>
-        <button class="crew-form-btn" onclick="openModal('Pierre Burtin')">📋 Mes infos</button>
+        <button class="crew-form-btn" onclick="openModal('Pierre Burtin')">Mes infos</button>
       </div>
     </div>
 
@@ -1484,7 +1494,7 @@
       <div>
         <div class="crew-name">Antoine</div>
         <div class="crew-surname">Deprez</div>
-        <button class="crew-form-btn" onclick="openModal('Antoine Deprez')">📋 Mes infos</button>
+        <button class="crew-form-btn" onclick="openModal('Antoine Deprez')">Mes infos</button>
       </div>
     </div>
 
@@ -1493,7 +1503,7 @@
       <div>
         <div class="crew-name">Michel</div>
         <div class="crew-surname">Ernotte</div>
-        <button class="crew-form-btn" onclick="openModal('Michel Ernotte')">📋 Mes infos</button>
+        <button class="crew-form-btn" onclick="openModal('Michel Ernotte')">Mes infos</button>
       </div>
     </div>
 
@@ -1502,7 +1512,7 @@
       <div>
         <div class="crew-name">Alessandro</div>
         <div class="crew-surname">Carlisi</div>
-        <button class="crew-form-btn" onclick="openModal('Alessandro Carlisi')">📋 Mes infos</button>
+        <button class="crew-form-btn" onclick="openModal('Alessandro Carlisi')">Mes infos</button>
       </div>
     </div>
 
@@ -1511,7 +1521,7 @@
       <div>
         <div class="crew-name">Pascal</div>
         <div class="crew-surname">Appeldoorn</div>
-        <button class="crew-form-btn" onclick="openModal('Pascal Appeldoorn')">📋 Mes infos</button>
+        <button class="crew-form-btn" onclick="openModal('Pascal Appeldoorn')">Mes infos</button>
       </div>
     </div>
 
