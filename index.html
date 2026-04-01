@@ -1038,6 +1038,105 @@
     flex-shrink: 0;
   }
 
+  /* ===== FORM MODAL ===== */
+  .crew-form-btn {
+    margin-top: 6px;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 10px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    color: rgba(245,166,35,0.85);
+    letter-spacing: 0.5px;
+    border: 1px solid rgba(245,166,35,0.3);
+    padding: 4px 9px;
+    border-radius: 100px;
+    background: rgba(245,166,35,0.08);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    white-space: nowrap;
+  }
+  .crew-form-btn:hover {
+    background: rgba(245,166,35,0.18);
+    border-color: rgba(245,166,35,0.5);
+  }
+  .crew-form-btn.submitted {
+    color: #81C784;
+    border-color: rgba(76,175,80,0.4);
+    background: rgba(76,175,80,0.1);
+    pointer-events: none;
+  }
+  .form-group {
+    margin-bottom: 16px;
+  }
+  .form-label {
+    display: block;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255,253,248,0.4);
+    margin-bottom: 6px;
+  }
+  .form-input {
+    width: 100%;
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 10px;
+    padding: 12px 14px;
+    font-size: 15px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--white);
+    outline: none;
+    transition: border-color 0.2s ease;
+    box-sizing: border-box;
+  }
+  .form-input:focus {
+    border-color: rgba(245,166,35,0.5);
+    background: rgba(255,255,255,0.09);
+  }
+  .form-input::placeholder { color: rgba(255,253,248,0.25); }
+  input[type="date"].form-input::-webkit-calendar-picker-indicator {
+    filter: invert(0.6);
+  }
+  .form-submit {
+    width: 100%;
+    margin-top: 8px;
+    padding: 14px;
+    background: linear-gradient(135deg, var(--fire), var(--sun));
+    border: none;
+    border-radius: 12px;
+    color: white;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 18px;
+    letter-spacing: 2px;
+    cursor: pointer;
+    transition: opacity 0.2s ease, transform 0.1s ease;
+  }
+  .form-submit:hover { opacity: 0.9; }
+  .form-submit:active { transform: scale(0.98); }
+  .form-submit:disabled { opacity: 0.5; cursor: default; }
+
+  /* ===== PAY TOGGLE ===== */
+  .pay-toggle {
+    flex: 1;
+    padding: 10px 8px;
+    border-radius: 10px;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,253,248,0.45);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  .pay-toggle-active {
+    background: rgba(245,166,35,0.15);
+    border-color: rgba(245,166,35,0.4);
+    color: var(--sun);
+  }
+
   /* ===== ACOMPTE LIST ===== */
   .acompte-list {
     border-radius: 10px;
@@ -1259,6 +1358,48 @@
   🤙 &nbsp; MÁLAGA NOS ESPERA &nbsp; · &nbsp; LOS VALIENTES ESTÁN LISTOS &nbsp; 🤙
 </div>
 
+<!-- MODAL FORMULAIRE -->
+<div id="form-modal" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.75);backdrop-filter:blur(6px);padding:20px;overflow-y:auto" onclick="closeModal(event)">
+  <div style="max-width:480px;margin:40px auto;background:#1A1008;border:1px solid rgba(245,166,35,0.25);border-radius:20px;padding:28px;position:relative" onclick="event.stopPropagation()">
+    <button onclick="closeModal()" style="position:absolute;top:16px;right:16px;background:rgba(255,255,255,0.08);border:none;color:rgba(255,253,248,0.6);width:32px;height:32px;border-radius:50%;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center">✕</button>
+    <div style="font-size:11px;letter-spacing:3px;text-transform:uppercase;color:var(--sun);margin-bottom:6px">Données personnelles</div>
+    <div id="modal-name" style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:2px;color:var(--white);margin-bottom:20px"></div>
+
+    <form id="modal-form" action="https://formspree.io/f/mdapdano" method="POST" onsubmit="handleSubmit(event)">
+      <input type="hidden" name="participant" id="form-participant">
+
+      <div class="form-group">
+        <label class="form-label">Date de naissance</label>
+        <input type="date" name="date_naissance" class="form-input" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Nationalité</label>
+        <input type="text" name="nationalite" class="form-input" placeholder="ex: Belge" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Pays émetteur du document</label>
+        <input type="text" name="pays_emetteur" class="form-input" placeholder="ex: Belgique" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Numéro de carte d'identité</label>
+        <input type="text" name="numero_carte" class="form-input" placeholder="ex: 590-1234567-89" required>
+      </div>
+      <div class="form-group">
+        <label class="form-label">Date d'expiration de la carte</label>
+        <input type="date" name="expiration_carte" class="form-input" required>
+      </div>
+
+      <button type="submit" class="form-submit">Envoyer mes infos ✈️</button>
+      <div id="form-success" style="display:none;margin-top:14px;padding:12px;background:rgba(76,175,80,0.15);border:1px solid rgba(76,175,80,0.3);border-radius:10px;text-align:center;font-size:13px;color:#81C784">
+        ✅ Infos envoyées ! Merci.
+      </div>
+      <div id="form-error" style="display:none;margin-top:14px;padding:12px;background:rgba(232,68,26,0.15);border:1px solid rgba(232,68,26,0.3);border-radius:10px;text-align:center;font-size:13px;color:#FF8A6A">
+        ❌ Erreur d'envoi. Réessaie.
+      </div>
+    </form>
+  </div>
+</div>
+
 <!-- CREW SECTION -->
 <section class="section animate-on-scroll" id="crew" style="padding-bottom:20px">
   <div class="section-label">Le squad</div>
@@ -1271,7 +1412,7 @@
       <div>
         <div class="crew-name">Benoit</div>
         <div class="crew-surname">Stalport</div>
-        <a class="crew-boarding-link" href="#" onclick="return false"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="15" rx="2.5" stroke="rgba(255,253,248,0.2)" fill="none"/><rect x="1" y="4" width="20" height="3" fill="rgba(255,253,248,0.12)"/><rect x="3" y="9" width="6" height="1.5" rx="0.75" fill="rgba(255,253,248,0.2)"/><rect x="3" y="11.5" width="4" height="1.5" rx="0.75" fill="rgba(255,253,248,0.15)"/><rect x="14" y="8.5" width="5" height="4" rx="1" fill="rgba(255,253,248,0.1)" stroke="rgba(255,253,248,0.15)" stroke-width="0.5"/></svg></a>
+        <button class="crew-form-btn" onclick="openModal('Benoit Stalport')">📋 Mes infos</button>
       </div>
     </div>
 
@@ -1280,7 +1421,7 @@
       <div>
         <div class="crew-name">Juan</div>
         <div class="crew-surname">Tarazaga</div>
-        <a class="crew-boarding-link" href="#" onclick="return false"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="15" rx="2.5" stroke="rgba(255,253,248,0.2)" fill="none"/><rect x="1" y="4" width="20" height="3" fill="rgba(255,253,248,0.12)"/><rect x="3" y="9" width="6" height="1.5" rx="0.75" fill="rgba(255,253,248,0.2)"/><rect x="3" y="11.5" width="4" height="1.5" rx="0.75" fill="rgba(255,253,248,0.15)"/><rect x="14" y="8.5" width="5" height="4" rx="1" fill="rgba(255,253,248,0.1)" stroke="rgba(255,253,248,0.15)" stroke-width="0.5"/></svg></a>
+        <button class="crew-form-btn" onclick="openModal('Juan Tarazaga')">📋 Mes infos</button>
       </div>
     </div>
 
@@ -1289,7 +1430,7 @@
       <div>
         <div class="crew-name">Pierre</div>
         <div class="crew-surname">Bonhomme</div>
-        <a class="crew-boarding-link" href="#" onclick="return false"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="15" rx="2.5" stroke="rgba(255,253,248,0.2)" fill="none"/><rect x="1" y="4" width="20" height="3" fill="rgba(255,253,248,0.12)"/><rect x="3" y="9" width="6" height="1.5" rx="0.75" fill="rgba(255,253,248,0.2)"/><rect x="3" y="11.5" width="4" height="1.5" rx="0.75" fill="rgba(255,253,248,0.15)"/><rect x="14" y="8.5" width="5" height="4" rx="1" fill="rgba(255,253,248,0.1)" stroke="rgba(255,253,248,0.15)" stroke-width="0.5"/></svg></a>
+        <button class="crew-form-btn" onclick="openModal('Pierre Bonhomme')">📋 Mes infos</button>
       </div>
     </div>
 
@@ -1298,7 +1439,7 @@
       <div>
         <div class="crew-name">Raphaël</div>
         <div class="crew-surname">Weijenberg</div>
-        <a class="crew-boarding-link" href="#" onclick="return false"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="15" rx="2.5" stroke="rgba(255,253,248,0.2)" fill="none"/><rect x="1" y="4" width="20" height="3" fill="rgba(255,253,248,0.12)"/><rect x="3" y="9" width="6" height="1.5" rx="0.75" fill="rgba(255,253,248,0.2)"/><rect x="3" y="11.5" width="4" height="1.5" rx="0.75" fill="rgba(255,253,248,0.15)"/><rect x="14" y="8.5" width="5" height="4" rx="1" fill="rgba(255,253,248,0.1)" stroke="rgba(255,253,248,0.15)" stroke-width="0.5"/></svg></a>
+        <button class="crew-form-btn" onclick="openModal('Raphaël Weijenberg')">📋 Mes infos</button>
       </div>
     </div>
 
@@ -1307,7 +1448,7 @@
       <div>
         <div class="crew-name">Gregory</div>
         <div class="crew-surname">Fontaine</div>
-        <a class="crew-boarding-link" href="#" onclick="return false"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="15" rx="2.5" stroke="rgba(255,253,248,0.2)" fill="none"/><rect x="1" y="4" width="20" height="3" fill="rgba(255,253,248,0.12)"/><rect x="3" y="9" width="6" height="1.5" rx="0.75" fill="rgba(255,253,248,0.2)"/><rect x="3" y="11.5" width="4" height="1.5" rx="0.75" fill="rgba(255,253,248,0.15)"/><rect x="14" y="8.5" width="5" height="4" rx="1" fill="rgba(255,253,248,0.1)" stroke="rgba(255,253,248,0.15)" stroke-width="0.5"/></svg></a>
+        <button class="crew-form-btn" onclick="openModal('Gregory Fontaine')">📋 Mes infos</button>
       </div>
     </div>
 
@@ -1316,7 +1457,7 @@
       <div>
         <div class="crew-name">Mathieu</div>
         <div class="crew-surname">Mannesberg</div>
-        <a class="crew-boarding-link" href="#" onclick="return false"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="15" rx="2.5" stroke="rgba(255,253,248,0.2)" fill="none"/><rect x="1" y="4" width="20" height="3" fill="rgba(255,253,248,0.12)"/><rect x="3" y="9" width="6" height="1.5" rx="0.75" fill="rgba(255,253,248,0.2)"/><rect x="3" y="11.5" width="4" height="1.5" rx="0.75" fill="rgba(255,253,248,0.15)"/><rect x="14" y="8.5" width="5" height="4" rx="1" fill="rgba(255,253,248,0.1)" stroke="rgba(255,253,248,0.15)" stroke-width="0.5"/></svg></a>
+        <button class="crew-form-btn" onclick="openModal('Mathieu Mannesberg')">📋 Mes infos</button>
       </div>
     </div>
 
@@ -1325,7 +1466,7 @@
       <div>
         <div class="crew-name">François</div>
         <div class="crew-surname">Minsier</div>
-        <a class="crew-boarding-link" href="#" onclick="return false"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="15" rx="2.5" stroke="rgba(255,253,248,0.2)" fill="none"/><rect x="1" y="4" width="20" height="3" fill="rgba(255,253,248,0.12)"/><rect x="3" y="9" width="6" height="1.5" rx="0.75" fill="rgba(255,253,248,0.2)"/><rect x="3" y="11.5" width="4" height="1.5" rx="0.75" fill="rgba(255,253,248,0.15)"/><rect x="14" y="8.5" width="5" height="4" rx="1" fill="rgba(255,253,248,0.1)" stroke="rgba(255,253,248,0.15)" stroke-width="0.5"/></svg></a>
+        <button class="crew-form-btn" onclick="openModal('François Minsier')">📋 Mes infos</button>
       </div>
     </div>
 
@@ -1334,7 +1475,7 @@
       <div>
         <div class="crew-name">Pierre</div>
         <div class="crew-surname">Burtin</div>
-        <a class="crew-boarding-link" href="#" onclick="return false"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="15" rx="2.5" stroke="rgba(255,253,248,0.2)" fill="none"/><rect x="1" y="4" width="20" height="3" fill="rgba(255,253,248,0.12)"/><rect x="3" y="9" width="6" height="1.5" rx="0.75" fill="rgba(255,253,248,0.2)"/><rect x="3" y="11.5" width="4" height="1.5" rx="0.75" fill="rgba(255,253,248,0.15)"/><rect x="14" y="8.5" width="5" height="4" rx="1" fill="rgba(255,253,248,0.1)" stroke="rgba(255,253,248,0.15)" stroke-width="0.5"/></svg></a>
+        <button class="crew-form-btn" onclick="openModal('Pierre Burtin')">📋 Mes infos</button>
       </div>
     </div>
 
@@ -1343,7 +1484,7 @@
       <div>
         <div class="crew-name">Antoine</div>
         <div class="crew-surname">Deprez</div>
-        <a class="crew-boarding-link" href="#" onclick="return false"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="15" rx="2.5" stroke="rgba(255,253,248,0.2)" fill="none"/><rect x="1" y="4" width="20" height="3" fill="rgba(255,253,248,0.12)"/><rect x="3" y="9" width="6" height="1.5" rx="0.75" fill="rgba(255,253,248,0.2)"/><rect x="3" y="11.5" width="4" height="1.5" rx="0.75" fill="rgba(255,253,248,0.15)"/><rect x="14" y="8.5" width="5" height="4" rx="1" fill="rgba(255,253,248,0.1)" stroke="rgba(255,253,248,0.15)" stroke-width="0.5"/></svg></a>
+        <button class="crew-form-btn" onclick="openModal('Antoine Deprez')">📋 Mes infos</button>
       </div>
     </div>
 
@@ -1352,7 +1493,7 @@
       <div>
         <div class="crew-name">Michel</div>
         <div class="crew-surname">Ernotte</div>
-        <a class="crew-boarding-link" href="#" onclick="return false"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="15" rx="2.5" stroke="rgba(255,253,248,0.2)" fill="none"/><rect x="1" y="4" width="20" height="3" fill="rgba(255,253,248,0.12)"/><rect x="3" y="9" width="6" height="1.5" rx="0.75" fill="rgba(255,253,248,0.2)"/><rect x="3" y="11.5" width="4" height="1.5" rx="0.75" fill="rgba(255,253,248,0.15)"/><rect x="14" y="8.5" width="5" height="4" rx="1" fill="rgba(255,253,248,0.1)" stroke="rgba(255,253,248,0.15)" stroke-width="0.5"/></svg></a>
+        <button class="crew-form-btn" onclick="openModal('Michel Ernotte')">📋 Mes infos</button>
       </div>
     </div>
 
@@ -1361,7 +1502,7 @@
       <div>
         <div class="crew-name">Alessandro</div>
         <div class="crew-surname">Carlisi</div>
-        <a class="crew-boarding-link" href="#" onclick="return false"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="15" rx="2.5" stroke="rgba(255,253,248,0.2)" fill="none"/><rect x="1" y="4" width="20" height="3" fill="rgba(255,253,248,0.12)"/><rect x="3" y="9" width="6" height="1.5" rx="0.75" fill="rgba(255,253,248,0.2)"/><rect x="3" y="11.5" width="4" height="1.5" rx="0.75" fill="rgba(255,253,248,0.15)"/><rect x="14" y="8.5" width="5" height="4" rx="1" fill="rgba(255,253,248,0.1)" stroke="rgba(255,253,248,0.15)" stroke-width="0.5"/></svg></a>
+        <button class="crew-form-btn" onclick="openModal('Alessandro Carlisi')">📋 Mes infos</button>
       </div>
     </div>
 
@@ -1370,7 +1511,7 @@
       <div>
         <div class="crew-name">Pascal</div>
         <div class="crew-surname">Appeldoorn</div>
-        <a class="crew-boarding-link" href="#" onclick="return false"><svg width="22" height="16" viewBox="0 0 22 16" fill="none" xmlns="http://www.w3.org/2000/svg"><rect x="0.5" y="0.5" width="21" height="15" rx="2.5" stroke="rgba(255,253,248,0.2)" fill="none"/><rect x="1" y="4" width="20" height="3" fill="rgba(255,253,248,0.12)"/><rect x="3" y="9" width="6" height="1.5" rx="0.75" fill="rgba(255,253,248,0.2)"/><rect x="3" y="11.5" width="4" height="1.5" rx="0.75" fill="rgba(255,253,248,0.15)"/><rect x="14" y="8.5" width="5" height="4" rx="1" fill="rgba(255,253,248,0.1)" stroke="rgba(255,253,248,0.15)" stroke-width="0.5"/></svg></a>
+        <button class="crew-form-btn" onclick="openModal('Pascal Appeldoorn')">📋 Mes infos</button>
       </div>
     </div>
 
@@ -1719,69 +1860,82 @@
   <!-- Acompte table -->
   <div class="card" style="margin-bottom:16px">
     <div class="card-title" style="margin-bottom:16px">🏦 Acompte à verser maintenant</div>
-    <div style="font-size:13px;color:rgba(255,253,248,0.5);margin-bottom:14px;line-height:1.5">Veuillez virer le montant ci-dessous <strong style="color:var(--white)">dès que possible</strong> sur le compte de Benoit.</div>
+    <div style="font-size:13px;color:rgba(255,253,248,0.5);margin-bottom:14px;line-height:1.5">Veuillez virer le montant ci-dessous <strong style="color:var(--white)">dès que possible</strong>.</div>
+
+    <!-- Toggle -->
+    <div style="display:flex;gap:8px;margin-bottom:16px">
+      <button onclick="setPayMode('perso')" id="btn-perso" class="pay-toggle pay-toggle-active">💳 Paiement perso</button>
+      <button onclick="setPayMode('facture')" id="btn-facture" class="pay-toggle">🧾 Avec facture</button>
+    </div>
+
+    <!-- Info facture -->
+    <div id="info-facture" style="display:none;padding:12px;background:rgba(75,163,216,0.08);border:1px solid rgba(75,163,216,0.2);border-radius:10px;font-size:12px;color:rgba(255,253,248,0.65);margin-bottom:14px;line-height:1.7">
+      🤫 <strong style="color:#7BCFFF">Option facturation entreprise</strong><br>
+      Visites d'entreprise à Málaga organisées par <strong style="color:var(--white)">Juan Tarazaga</strong>.<br>
+      Une <strong style="color:var(--white)">facture d'acompte</strong> vous sera transmise. Le solde sera facturé en fin de séjour.
+    </div>
 
     <!-- Chaque personne -->
     <div class="acompte-list">
 
       <div class="acompte-item">
         <div class="acompte-name">Benoit Stalport</div>
-        <div class="acompte-amount">900 €</div>
+        <div class="acompte-amount" data-perso="900 €" data-facture="1 000 €">900 €</div>
       </div>
       <div class="acompte-item acompte-special">
         <div class="acompte-name">Juan Tarazaga <span class="acompte-note">sans vol</span></div>
-        <div class="acompte-amount acompte-low">450 €</div>
+        <div class="acompte-amount acompte-low" data-perso="450 €" data-facture="500 €">450 €</div>
       </div>
       <div class="acompte-item">
         <div class="acompte-name">Pierre Bonhomme</div>
-        <div class="acompte-amount">900 €</div>
+        <div class="acompte-amount" data-perso="900 €" data-facture="1 000 €">900 €</div>
       </div>
       <div class="acompte-item">
         <div class="acompte-name">Raphaël Weijenberg</div>
-        <div class="acompte-amount">900 €</div>
+        <div class="acompte-amount" data-perso="900 €" data-facture="1 000 €">900 €</div>
       </div>
       <div class="acompte-item">
         <div class="acompte-name">Gregory Fontaine</div>
-        <div class="acompte-amount">900 €</div>
+        <div class="acompte-amount" data-perso="900 €" data-facture="1 000 €">900 €</div>
       </div>
       <div class="acompte-item acompte-special">
         <div class="acompte-name">Mathieu Mannesberg <span class="acompte-note">sans vol</span></div>
-        <div class="acompte-amount acompte-low">450 €</div>
+        <div class="acompte-amount acompte-low" data-perso="450 €" data-facture="500 €">450 €</div>
       </div>
       <div class="acompte-item">
         <div class="acompte-name">François Minsier</div>
-        <div class="acompte-amount">900 €</div>
+        <div class="acompte-amount" data-perso="900 €" data-facture="1 000 €">900 €</div>
       </div>
       <div class="acompte-item">
         <div class="acompte-name">Pierre Burtin</div>
-        <div class="acompte-amount">900 €</div>
+        <div class="acompte-amount" data-perso="900 €" data-facture="1 000 €">900 €</div>
       </div>
       <div class="acompte-item">
         <div class="acompte-name">Antoine Deprez</div>
-        <div class="acompte-amount">1 200 €</div>
+        <div class="acompte-amount" data-perso="1 200 €" data-facture="1 300 €">1 200 €</div>
       </div>
       <div class="acompte-item">
         <div class="acompte-name">Michel Ernotte</div>
-        <div class="acompte-amount">1 200 €</div>
+        <div class="acompte-amount" data-perso="1 200 €" data-facture="1 300 €">1 200 €</div>
       </div>
       <div class="acompte-item">
         <div class="acompte-name">Alessandro Carlisi</div>
-        <div class="acompte-amount">1 200 €</div>
+        <div class="acompte-amount" data-perso="1 200 €" data-facture="1 300 €">1 200 €</div>
       </div>
       <div class="acompte-item">
         <div class="acompte-name">Pascal Appeldoorn</div>
-        <div class="acompte-amount">1 200 €</div>
+        <div class="acompte-amount" data-perso="1 200 €" data-facture="1 300 €">1 200 €</div>
       </div>
 
     </div>
   </div>
 
-  <!-- Coordonnées bancaires -->
-  <div class="bank-card">
+  <!-- Coordonnées bancaires — 2 cartes switchables -->
+  <div id="bank-perso" class="bank-card">
     <div class="bank-header">
       <span style="font-size:22px">🏦</span>
       <div>
-        <div class="bank-title">Virement à effectuer</div>
+        <div class="bank-title">Virement personnel</div>
         <div class="bank-sub">Communication : "IRO Málaga 2026 — [Ton prénom]"</div>
       </div>
     </div>
@@ -1792,13 +1946,37 @@
       </div>
       <div class="bank-row">
         <div class="bank-label">IBAN</div>
-        <div class="bank-iban" onclick="copyIBAN(this)">
+        <div class="bank-iban" onclick="copyIBAN('BE33650106682546','copy-confirm-perso')">
           BE33 6501 0668 2546
           <span class="copy-hint">Tap pour copier</span>
         </div>
       </div>
     </div>
-    <div id="copy-confirm" style="display:none;margin-top:10px;text-align:center;font-size:12px;color:#4CAF80;font-weight:600">✓ IBAN copié !</div>
+    <div id="copy-confirm-perso" style="display:none;margin-top:10px;text-align:center;font-size:12px;color:#4CAF80;font-weight:600">✓ IBAN copié !</div>
+  </div>
+
+  <div id="bank-facture" class="bank-card" style="display:none;border-color:rgba(75,163,216,0.35);background:linear-gradient(135deg,rgba(27,108,168,0.25),rgba(10,26,42,0.8))">
+    <div class="bank-header">
+      <span style="font-size:22px">🧾</span>
+      <div>
+        <div class="bank-title" style="color:#7BCFFF">Virement avec facture</div>
+        <div class="bank-sub">Communication : "Acompte Malaga tour d'entreprise — [Ton prénom]"</div>
+      </div>
+    </div>
+    <div class="bank-details">
+      <div class="bank-row">
+        <div class="bank-label">Bénéficiaire</div>
+        <div class="bank-value">Club 41 — Liège Notger 985</div>
+      </div>
+      <div class="bank-row">
+        <div class="bank-label">IBAN</div>
+        <div class="bank-iban" style="color:#7BCFFF" onclick="copyIBAN('BE82103095011568','copy-confirm-facture')">
+          BE82 1030 9501 1568
+          <span class="copy-hint">Tap pour copier</span>
+        </div>
+      </div>
+    </div>
+    <div id="copy-confirm-facture" style="display:none;margin-top:10px;text-align:center;font-size:12px;color:#4CAF80;font-weight:600">✓ IBAN copié !</div>
   </div>
 
 
@@ -2014,14 +2192,76 @@
   }
 
   // Copy IBAN
-  function copyIBAN(el) {
-    const iban = 'BE33650106682546';
+  function copyIBAN(iban, confirmId) {
     if (navigator.clipboard) {
       navigator.clipboard.writeText(iban).then(() => {
-        const confirm = document.getElementById('copy-confirm');
+        const confirm = document.getElementById(confirmId);
         if (confirm) { confirm.style.display = 'block'; setTimeout(() => confirm.style.display = 'none', 2500); }
       });
     }
+  }
+
+  // Modal formulaire
+  function openModal(name) {
+    document.getElementById('modal-name').textContent = name;
+    document.getElementById('form-participant').value = name;
+    document.getElementById('form-success').style.display = 'none';
+    document.getElementById('form-error').style.display = 'none';
+    document.getElementById('modal-form').reset();
+    document.getElementById('form-participant').value = name;
+    document.getElementById('form-modal').style.display = 'block';
+    document.body.style.overflow = 'hidden';
+  }
+  function closeModal(e) {
+    if (!e || e.target === document.getElementById('form-modal')) {
+      document.getElementById('form-modal').style.display = 'none';
+      document.body.style.overflow = '';
+    }
+  }
+  async function handleSubmit(e) {
+    e.preventDefault();
+    const form = e.target;
+    const btn = form.querySelector('.form-submit');
+    btn.disabled = true;
+    btn.textContent = 'Envoi en cours...';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        document.getElementById('form-success').style.display = 'block';
+        btn.textContent = '✅ Envoyé !';
+        // Mark the button as submitted
+        const name = document.getElementById('form-participant').value;
+        document.querySelectorAll('.crew-form-btn').forEach(b => {
+          if (b.getAttribute('onclick').includes(name.split(' ')[0])) {
+            b.textContent = '✅ Envoyé';
+            b.classList.add('submitted');
+          }
+        });
+        setTimeout(() => closeModal(), 2000);
+      } else {
+        throw new Error();
+      }
+    } catch {
+      document.getElementById('form-error').style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Envoyer mes infos ✈️';
+    }
+  }
+  function setPayMode(mode) {
+    const isFacture = mode === 'facture';
+    document.getElementById('btn-perso').className = 'pay-toggle' + (isFacture ? '' : ' pay-toggle-active');
+    document.getElementById('btn-facture').className = 'pay-toggle' + (isFacture ? ' pay-toggle-active' : '');
+    document.getElementById('info-facture').style.display = isFacture ? 'block' : 'none';
+    document.getElementById('bank-perso').style.display = isFacture ? 'none' : 'block';
+    document.getElementById('bank-facture').style.display = isFacture ? 'block' : 'none';
+    // Update amounts
+    document.querySelectorAll('.acompte-amount').forEach(el => {
+      el.textContent = isFacture ? el.dataset.facture : el.dataset.perso;
+    });
   }
 
   // Smooth scroll
